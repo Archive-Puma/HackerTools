@@ -21,14 +21,15 @@ class MetasploitModule < Msf::Auxiliary
 
     register_options(
       [
-        OptString.new('URI', ['true', 'HackTheBox Invite Code API URL', 'https://www.hackthebox.eu/api/invite/generate'])
+        OptString.new('URL', [true, 'URL to the site (e.g. https://site.com/) or a valid resource (e.g. file:///document.txt)', 'https://www.hackthebox.eu']),
+        OptString.new('TARGETURI', [true, 'URI to the site (e.g /site/) or a valid file resource (e.g /welcome.png)', '/api/invite/generate'])
       ], self.class
     )
   end
 
   def run
     # Parse the URI
-    uri = URI.parse(datastore['URI'])
+    uri = URI.parse(datastore['URL'] + datastore['TARGETURI'])
     # Create the HTTPS object
     https = Net::HTTP.new(uri.host, uri.port)
     https.use_ssl = true
@@ -48,7 +49,7 @@ class MetasploitModule < Msf::Auxiliary
       end
     # Check if the POST was not successfull
     rescue
-      print_error('Can\'t open the URI')
+      print_error('Unhandled exception during execution')
     end
   end
 

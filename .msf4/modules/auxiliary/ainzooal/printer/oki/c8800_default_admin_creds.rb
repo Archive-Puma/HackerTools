@@ -60,15 +60,3 @@ class MetasploitModule < Msf::Auxiliary
     end
   end
 end
-
-=begin
-<!-- 7. Administrator Login -->
-		<tr>
-			<td align="center">
-				<input style="font-family: Verdana, Arial, sans-serif; font-size:12px; font-weight:bold; color:black; background-color:#eeeeee; width:150px" type="button" value="Administrator Login" onclick="login();">
-			</td>
-		</tr>
-
-
-    Authorization = "Basic cm9vdDoyQzk3OTM="
-=end
